@@ -146,9 +146,10 @@ def executor(code,child_conn):
     exec(program)
     print("execution finished")
 
+# give values for rgb as integer
 def change_light(r,g,b):
     global client
-    client.publish("face_light/color", bytes([r,g,b]))
+    client.publish("face_light/color", struct.pack('iii',r,g,b))
 
 process = Process(target=executor, args=(code, child_conn), daemon=True)
 
